@@ -119,7 +119,9 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
+
        (org              ; organize your plain life in plain text
+        +pandoc
         +attach          ; custom attachment system
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
@@ -141,7 +143,7 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
-       ;;web               ; the tubes
+       web               ; the tubes
        ;;vala              ; GObjective-C
 
        ;; Applications are complex and opinionated modules that transform Emacs
