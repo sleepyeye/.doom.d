@@ -6,3 +6,22 @@
 (load! "+lsp")
 (load! "+korean")
 ;; (load! "+reveal")
+
+(defvar sleepyeye/dropbox-dir
+  (expand-file-name "~/Dropbox"))
+
+(defvar sleepyeye/org-dir
+  (expand-file-name "org" sleepyeye/dropbox-dir))
+
+(defvar sleepyeye/research-dir
+  (expand-file-name "research" sleepyeye/dropbox-dir))
+
+(defvar sleepyeye/bib-dir
+  (expand-file-name "bib" sleepyeye/research-dir))
+
+(defvar sleepyeye/bibnote-dir
+  (expand-file-name "note" sleepyeye/research-dir))
+
+(defvar sleepyeye/bibpdfs-dir
+  (expand-file-name "pdf" sleepyeye/research-dir))
+
