@@ -25,6 +25,7 @@
 (defvar sleepyeye/bibpdfs-dir
   (expand-file-name "pdf" sleepyeye/research-dir))
 
+(def-package! org-git-link)
 
 (def-package! ebib
   :init
