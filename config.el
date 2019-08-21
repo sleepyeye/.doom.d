@@ -25,3 +25,11 @@
 (defvar sleepyeye/bibpdfs-dir
   (expand-file-name "pdf" sleepyeye/research-dir))
 
+
+(def-package! ebib
+  :init
+  :config
+  (setq ebib-bib-search-dirs (list sleepyeye/bib-dir)
+        ebib-file-search-dirs (list sleepyeye/bibpdfs-dir)
+        ebib-notes-directory sleepyeye/bibnote-dir
+        ebib-preload-bib-files (list "master.bib")))
