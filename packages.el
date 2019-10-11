@@ -8,3 +8,4 @@
 ;; (package! builtin-package :disable t)
 (package! clang-format)
 (package! ebib)
+;;(package! org-git-link)

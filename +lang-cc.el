@@ -43,4 +43,20 @@
                 c-backspace-function #'delete-backward-char
                 c-default-style "llvm"))
 
+;; (after! cuda-mode
+;;   (add-hook! ))
+
+(defun clang-format-buffer-smart ()
+  "Reformat buffer if .clang-format exists in the projectile root."
+  (interactive)
+  (when (f-exists? (expand-file-name ".clang-format" (projectile-project-root)))
+    (clang-format-buffer)))
+
+(defun clang-format-buffer-smart-on-save ()
+  "Add auto-save hook for clang-format-buffer-smart."
+  (add-hook 'before-save-hook 'clang-format-buffer-smart nil t))
+
+(add-hook! cuda-mode #'clang-format-buffer-smart-on-save)
+
+
 (provide '+lang-cc)

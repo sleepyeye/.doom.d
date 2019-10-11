@@ -6,16 +6,6 @@
 (load! "+lsp")
 (load! "+korean")
 
-
-(defun clang-format-buffer-smart ()
-  "Reformat buffer if .clang-format exists in the projectile root."
-  (interactive)
-  (when (f-exists? (expand-file-name ".clang-format" (projectile-project-root)))
-    (clang-format-buffer)))
-
-;; (defun clang-format-buffer-smart-on-save ()
-;;   "Add auto-save hook for clang-format-buffer-smart."
-;;   (add-hook 'before-save-hook 'clang-format-buffer-smart nil t))
 ;; (load! "+reveal")
 
 (defvar sleepyeye/dropbox-dir
@@ -36,7 +26,7 @@
 (defvar sleepyeye/bibpdfs-dir
   (expand-file-name "pdf" sleepyeye/research-dir))
 
-(def-package! org-git-link)
+;;(def-package! org-git-link)
 
 (def-package! ebib
   :init
