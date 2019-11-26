@@ -8,4 +8,7 @@
 ;; (package! builtin-package :disable t)
 (package! clang-format)
 (package! ebib)
+(package! org-reverse-datetree)
+(package! org-starter)
+(package! mixed-pitch)
 ;;(package! org-git-link)
