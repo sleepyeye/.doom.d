@@ -8,23 +8,14 @@
 ;; More information about these modules (and what flags they support) can be
 ;; found in modules/README.org.
 
-(doom! :feature
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
-       eval              ; run code, run (also, repls)
-       (evil +everywhere); come to the dark side, we have cookies
-       ;; file-templates    ; auto-snippets for empty files
-       (lookup           ; helps you navigate your code and documentation
-        +docsets)        ; ...or in Dash docsets locally
-       snippets          ; my elves. They type so I don't have to
-       workspaces        ; tab emulation, persistence & separate workspaces
-
-       :completion
+(doom! :completion
        (company +auto)           ; the ultimate code completion backend
        ;;helm             ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
        ivy              ; a search engine for love and life
 
        :ui
+       workspaces        ; tab emulation, persistence & separate workspaces
        ;;deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
@@ -48,6 +39,8 @@
        window-select     ; visually switch windows
 
        :editor
+       snippets          ; my elves. They type so I don't have to
+       (evil +everywhere); come to the dark side, we have cookies
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
@@ -67,6 +60,9 @@
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
+       (lookup           ; helps you navigate your code and documentation
+        +docsets)        ; ...or in Dash docsets locally
+       eval              ; run code, run (also, repls)
        ;;ansible
        ;;direnv
        ;;docker
