@@ -5,5 +5,6 @@
 (global-set-key (kbd "<kana>") 'toggle-input-method)
 (global-set-key (kbd "<S-spc>") 'toggle-input-method)
 (prefer-coding-system 'utf-8)
+(setq system-time-locale "C")
 
 (provide '+korean)
