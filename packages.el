@@ -11,4 +11,5 @@
 (package! org-reverse-datetree)
 (package! org-starter)
 (package! mixed-pitch)
+(package! ox-rst)
 ;;(package! org-git-link)

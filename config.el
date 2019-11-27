@@ -59,6 +59,14 @@
 
 (def-package! org-reverse-datetree)
 
+(def-package! ox-rst
+  :config
+  (setq-default org-reverse-datetree-level-formats
+                '((lambda (time) (format-time-string "%B" (org-reverse-datetree-monday time))) ; month
+                  "%Y-%m-%d %A"           ; date
+                  )))
+
+
 ;; (def-package! org-starter
 ;;   :config
 ;;   (setq org-starter-path '(sleepyeye/research-dir sleepyeye/org-dir)))
