@@ -79,7 +79,6 @@
 (defun inkscape-open (path)
   "Open the PATH in inkscape.
 Make a new file if needed."
-  (interactive)
   (unless (f-ext-p path "svg") (error "Must be an svg file."))
   (unless (file-exists-p path)
     (with-temp-file path
@@ -170,7 +169,7 @@ Here are two examples:
 
 (defun inkscape-insert (name)
   "Convenience function to insert a drawing with filename PATH."
-  (interactive "sFilename: ")
+  (interactive "Filename: ")
   (insert (format "inkscape:%s" (inkscape-image-path name))))
 
 
