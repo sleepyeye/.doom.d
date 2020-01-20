@@ -1,4 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
+(setq doom-localleader-key ",")
 
 ;; Copy this file to ~/.doom.d/init.el or ~/.config/doom/init.el ('doom
 ;; quickstart' will do this for you). The `doom!' block below controls what
