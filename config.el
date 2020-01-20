@@ -38,12 +38,6 @@
       ;; doom-serif-font  TODO this need fixed-pitch serif font
       )
 
-(load-theme 'doom-solarized-light t)
-
-
-;; (set-face-font 'default "Source Code Pro Semibold-9")
-;; (set-face-font 'variable-pitch "Segoe UI Semibold-9")
-;; (copy-face 'default 'fixed-pitch)
 
 
 
