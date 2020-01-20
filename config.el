@@ -38,7 +38,10 @@
 ;;(load-theme 'doom-solarized-light t)
 (load-theme 'doom-dracula t)
 
-
+;; Define global keybindings
+(map! :leader
+      :desc "File manager" "-" #'deer
+      :desc "File manager other window" "_" #'deer-jump-other-window)
 
 (load! "+lang-cc")
 (load! "+lsp")
