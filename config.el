@@ -63,6 +63,8 @@
   ;; TODO enable +inkscape for latex mode
   (load! "+inkscape"))
 
+;;(load-theme 'doom-solarized-light t)
+(load-theme 'doom-dracula t)
 
 ;; (def-package! org-starter
 ;;   :config
