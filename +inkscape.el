@@ -172,5 +172,11 @@ Here are two examples:
   (interactive "Filename: ")
   (insert (format "inkscape:%s" (inkscape-image-path name))))
 
+;; Define key binding for inkscape functions
+(map! (:map org-mode-map
+        :localleader
+        :desc "Insert inkscape figure" ";" #'inkscape-insert))
+
+
 
 (provide '+inkscape)
