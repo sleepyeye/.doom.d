@@ -59,6 +59,9 @@
                 '((lambda (time) (format-time-string "%B" (org-reverse-datetree-monday time))) ; month
                   "%Y-%m-%d %A"           ; date
                   )))
+(after! org
+  ;; TODO enable +inkscape for latex mode
+  (load! "+inkscape"))
 
 
 ;; (def-package! org-starter
