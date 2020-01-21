@@ -1,6 +1,6 @@
 ;;(def-package! org-git-link)
 
-(def-package! ebib
+(use-package! ebib
   :init
   :config
   (setq ebib-bib-search-dirs (list sleepyeye/bib-dir)
@@ -8,9 +8,9 @@
         ebib-notes-directory sleepyeye/bibnote-dir
         ebib-preload-bib-files (list "master.bib")))
 
-(def-package! org-reverse-datetree)
+(use-package! org-reverse-datetree)
 
-(def-package! ox-rst
+(use-package! ox-rst
   :config
   (setq-default org-reverse-datetree-level-formats
                 '((lambda (time) (format-time-string "%B" (org-reverse-datetree-monday time))) ; month
