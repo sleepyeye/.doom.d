@@ -18,6 +18,22 @@
                   )))
 
 
+(use-package! ox-publish
+  :config
+  (setq research/base (concat sleepyeye/research-dir "/org")
+        research/publish (concat sleepyeye/research-dir "/rst"))
+  (add-to-list 'org-publish-project-alist
+               `("research" . (:base-directory ,research/base
+                                               :base-extension "org"
+                                               :publishing-directory ,research/publish
+                                               :publishing-function org-rst-publish-to-rst
+                                               ;; FIXME currently completion function not work
+                                               ;; :completion-function
+                                               ;; (lambda () (let ((default-directory projectile-project-root))
+                                               ;;              (message default-directory)
+                                               ;;              (shell-command "make html")))
+                                               :body-only t))))
+
 ;; (def-package! org-starter
 ;;   :config
 ;;   (setq org-starter-path '(sleepyeye/research-dir sleepyeye/org-dir)))
@@ -26,5 +42,14 @@
 ;; (org-starter-define-file "weekly.org"
 ;;   :agenda t
 ;;   :refile '(:maxlevel . 9))
+
+
+
+;; Define key binding for org setup
+(map! (:map org-mode-map
+        :localleader
+        :desc "Publish file" "x" #'org-publish-current-file
+        :desc "Publish project" "X" #'org-publish-project))
+
 
 (provide '+org)
