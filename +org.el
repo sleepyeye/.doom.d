@@ -8,20 +8,21 @@
         ebib-notes-directory sleepyeye/bibnote-dir
         ebib-preload-bib-files (list "master.bib")))
 
-(use-package! org-reverse-datetree)
-
-(use-package! ox-rst
+(use-package! org-reverse-datetree
   :config
   (setq-default org-reverse-datetree-level-formats
-                '((lambda (time) (format-time-string "%B" (org-reverse-datetree-monday time))) ; month
+                '("%Y"
+                  (lambda (time)
+                    (format-time-string "%B" (org-reverse-datetree-monday time))) ; month
                   "%Y-%m-%d %A"           ; date
                   )))
 
+(use-package! ox-rst)
 
 (use-package! ox-publish
   :config
   (setq research/base (concat sleepyeye/research-dir "/org")
-        research/publish (concat sleepyeye/research-dir "/rst"))
+        research/publish (concat sleepyeye/research-dir "/publish"))
   (add-to-list 'org-publish-project-alist
                `("research" . (:base-directory ,research/base
                                                :base-extension "org"
@@ -33,6 +34,13 @@
                                                ;;              (message default-directory)
                                                ;;              (shell-command "make html")))
                                                :body-only t))))
+
+(use-package! ox-extra
+  :config
+  (ox-extras-activate '(ignore-headlines)))
+
+
+
 
 ;; (def-package! org-starter
 ;;   :config
