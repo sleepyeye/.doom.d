@@ -19,15 +19,50 @@
 
 (use-package! ox-rst)
 
+
+
+;; export headlines to separate files
+;; http://emacs.stackexchange.com/questions/2259/how-to-export-top-level-headings-of-org-mode-buffer-to-separate-files
+(defun org-export-weekly-to-rst ()
+  "Export all subtrees that are *not* tagged with :noexport: to
+separate files.
+Subtrees that do not have the :EXPORT_FILE_NAME: property set
+are exported to a filename derived from the headline text."
+  (interactive)
+  (save-buffer)
+  (let ((modifiedp (buffer-modified-p)))
+    (save-excursion
+      (goto-char (point-min))
+      (goto-char (re-search-forward "^*"))
+      (set-mark (line-beginning-position))
+      (goto-char (point-max))
+      (org-map-entries
+       (lambda ()
+         (let ((export-file (org-entry-get (point) "EXPORT_FILE_NAME")))
+           (unless export-file
+             (org-set-property
+              "EXPORT_FILE_NAME"
+              (replace-regexp-in-string " " "_" (nth 4 (org-heading-components)))))
+           (deactivate-mark)
+           (org-rst-export-to-rst nil t)
+           (unless export-file (org-delete-property "EXPORT_FILE_NAME"))
+           (set-buffer-modified-p modifiedp)))
+       "-noexport" 'region-start-level))))
+
+
+
+
+
 (use-package! ox-publish
   :config
+  (setq org-export-in-background t)
   (setq research/base (concat sleepyeye/research-dir "/org")
         research/publish (concat sleepyeye/research-dir "/publish"))
   (add-to-list 'org-publish-project-alist
                `("research" . (:base-directory ,research/base
                                                :base-extension "org"
                                                :publishing-directory ,research/publish
-                                               :publishing-function org-rst-publish-to-rst
+                                               :publishing-function (org-rst-publish-to-rst)
                                                ;; FIXME currently completion function not work
                                                ;; :completion-function
                                                ;; (lambda () (let ((default-directory projectile-project-root))
@@ -39,7 +74,12 @@
   :config
   (ox-extras-activate '(ignore-headlines)))
 
+(use-package! org-download)
 
+;; TODO todo capture for weekly
+;; TODO weekly setting for research
+;; TODO image drawing test
+;; TODO image download/insert test using org-download
 
 
 ;; (def-package! org-starter
@@ -58,6 +98,5 @@
         :localleader
         :desc "Publish file" "x" #'org-publish-current-file
         :desc "Publish project" "X" #'org-publish-project))
-
 
 (provide '+org)
