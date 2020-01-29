@@ -74,7 +74,10 @@ are exported to a filename derived from the headline text."
   :config
   (ox-extras-activate '(ignore-headlines)))
 
-(use-package! org-download)
+(use-package! org-download
+  :config
+  ;; Note that default filename of flamesshot is screenshot.png
+  (setq org-download-screenshot-method "flameshot gui -r | xclip -selection clipboard -t image/png -o > %s"))
 
 ;; TODO todo capture for weekly
 ;; TODO weekly setting for research
@@ -97,6 +100,9 @@ are exported to a filename derived from the headline text."
 (map! (:map org-mode-map
         :localleader
         :desc "Publish file" "x" #'org-publish-current-file
-        :desc "Publish project" "X" #'org-publish-project))
+        :desc "Publish project" "X" #'org-publish-project
+        :desc "Insert screenshot" "us" #'org-download-screenshot
+        :desc "Delete screenshot" "ud" #'org-download-delete
+        :desc "Rename screenshot" "ur" #'org-download-rename-at-point))
 
 (provide '+org)
