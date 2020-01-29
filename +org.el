@@ -21,9 +21,39 @@
 
 
 
+;; Add since original org-rst-export-to-rst does not take pub-dir
+(defun org-rst-export-to-rst-pubdir
+  (pub-dir &optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer to a reStructuredText file.
+
+If narrowing is active in the current buffer, only export its
+narrowed part.
+
+If a region is active, export that region.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting file should be accessible through
+the `org-export-stack' interface.
+
+When optional argument SUBTREEP is non-nil, export the sub-tree
+at point, extracting information from the headline properties
+first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+Return output file's name."
+  (interactive)
+  (let* ((extension (concat "." (or (plist-get ext-plist :rst-extension)
+                                    org-rst-extension
+                                    "rst")))
+         (file (org-export-output-file-name extension subtreep pub-dir)))
+    (org-export-to-file 'rst file
+      async subtreep visible-only body-only ext-plist)))
+
 ;; export headlines to separate files
 ;; http://emacs.stackexchange.com/questions/2259/how-to-export-top-level-headings-of-org-mode-buffer-to-separate-files
-(defun org-export-weekly-to-rst ()
+(defun org-export-weekly-to-rst (pub-dir)
   "Export all subtrees that are *not* tagged with :noexport: to
 separate files.
 Subtrees that do not have the :EXPORT_FILE_NAME: property set
@@ -44,25 +74,30 @@ are exported to a filename derived from the headline text."
               "EXPORT_FILE_NAME"
               (replace-regexp-in-string " " "_" (nth 4 (org-heading-components)))))
            (deactivate-mark)
-           (org-rst-export-to-rst nil t)
+           (org-rst-export-to-rst-pubdir pub-dir nil t)
            (unless export-file (org-delete-property "EXPORT_FILE_NAME"))
            (set-buffer-modified-p modifiedp)))
        "-noexport" 'region-start-level))))
 
 
 
+(defun org-publish-research (plist filename pub-dir)
+  (if (string-match-p "weekly.org" filename)
+      (org-export-weekly-to-rst pub-dir)
+    (org-rst-publish-to-rst plist filename pub-dir)))
 
+
+(setq research/base (concat sleepyeye/research-dir "/org")
+      research/publish (concat sleepyeye/research-dir "/publish"))
 
 (use-package! ox-publish
   :config
   (setq org-export-in-background t)
-  (setq research/base (concat sleepyeye/research-dir "/org")
-        research/publish (concat sleepyeye/research-dir "/publish"))
   (add-to-list 'org-publish-project-alist
                `("research" . (:base-directory ,research/base
                                                :base-extension "org"
                                                :publishing-directory ,research/publish
-                                               :publishing-function (org-rst-publish-to-rst)
+                                               :publishing-function org-publish-research
                                                ;; FIXME currently completion function not work
                                                ;; :completion-function
                                                ;; (lambda () (let ((default-directory projectile-project-root))
@@ -98,12 +133,14 @@ are exported to a filename derived from the headline text."
 
 
 
-
 ;; Define key binding for org setup
 (map! (:map org-mode-map
         :localleader
         :desc "Publish file" "x" #'org-publish-current-file
-        :desc "Publish project" "X" #'org-publish-project
+        ;; :desc "Publish project" "X" #'org-publish-project
+        :desc "Publish project" "X" #'(lambda (&optional force async)
+                                        (interactive "P")
+                                        (org-publish-current-project t async))
         :desc "Insert screenshot" "us" #'org-download-screenshot
         :desc "Delete screenshot" "ud" #'org-download-delete
         :desc "Rename screenshot" "ur" #'org-download-rename-at-point))
