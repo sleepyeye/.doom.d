@@ -85,14 +85,17 @@ are exported to a filename derived from the headline text."
 ;; TODO image download/insert test using org-download
 
 
-;; (def-package! org-starter
-;;   :config
-;;   (setq org-starter-path '(sleepyeye/research-dir sleepyeye/org-dir)))
+(use-package! org-starter
+  :config
+  (setq org-starter-path (list research/base sleepyeye/research-dir sleepyeye/org-dir))
+  (org-starter-define-file "weekly.org" :agenda t :refile '(:maxlevel . 9))
+  (org-starter-def-capture "w"
+      "Weekly entry"
+    entry
+    (file+function "weekly.org" org-reverse-datetree-goto-date-in-file) "* %?"
+    :clock-in t :clock-resume t :empty-lines 1))
 
 
-;; (org-starter-define-file "weekly.org"
-;;   :agenda t
-;;   :refile '(:maxlevel . 9))
 
 
 
