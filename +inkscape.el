@@ -169,7 +169,7 @@ Here are two examples:
 
 (defun inkscape-insert (name)
   "Convenience function to insert a drawing with filename PATH."
-  (interactive "Filename: ")
+  (interactive "sFilename: ")
   (insert (format "inkscape:%s" (inkscape-image-path name))))
 
 ;; Define key binding for inkscape functions
