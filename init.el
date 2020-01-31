@@ -23,7 +23,7 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-       ;;indent-guides     ; highlighted indent columns
+       indent-guides     ; highlighted indent columns
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -44,6 +44,8 @@
        (evil +everywhere); come to the dark side, we have cookies
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
+       file-templates
+       word-wrap
        ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
@@ -69,8 +71,8 @@
        ;;docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
-       flycheck          ; tasing you for every semicolon you forget
-       (flyspell +ivy)   ; tasing you for misspelling mispelling
+       ;; flycheck          ; tasing you for every semicolon you forget
+       ;; (flyspell +ivy)   ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
        lsp
        ;;macos             ; MacOS-specific commands
