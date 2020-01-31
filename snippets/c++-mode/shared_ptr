@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: shared pointer
+# key: sp
+# condition: t
+# --
+std::shared_ptr<$1>$0
