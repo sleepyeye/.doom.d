@@ -112,7 +112,19 @@ are exported to a filename derived from the headline text."
 (use-package! org-download
   :config
   ;; Note that default filename of flamesshot is screenshot.png
-  (setq org-download-screenshot-method "flameshot gui -r | xclip -selection clipboard -t image/png -o > %s"))
+  (setq org-download-screenshot-method "gnome-screenshot -a -f %s"))
+
+
+(defun org-download-copy-screenshot ()
+  "Capture screenshot and insert the resulting file.
+The screenshot tool is determined by `org-download-screenshot-method'."
+  (interactive)
+  (let ((default-directory "~"))
+    (make-directory (file-name-directory org-download-screenshot-file) t))
+  (when (file-exists-p org-download-screenshot-file)
+    (org-download-image org-download-screenshot-file)
+    (delete-file org-download-screenshot-file)))
+
 
 ;; TODO todo capture for weekly
 ;; TODO weekly setting for research
@@ -141,7 +153,7 @@ are exported to a filename derived from the headline text."
         :desc "Publish project" "X" #'(lambda (&optional force async)
                                         (interactive "P")
                                         (org-publish-current-project t async))
-        :desc "Insert screenshot" "us" #'org-download-screenshot
+        :desc "Insert screenshot" "us" #'org-download-copy-screenshot
         :desc "Delete screenshot" "ud" #'org-download-delete
         :desc "Rename screenshot" "ur" #'org-download-rename-at-point))
 
