@@ -135,12 +135,20 @@ The screenshot tool is determined by `org-download-screenshot-method'."
 (use-package! org-starter
   :config
   (setq org-starter-path (list research/base sleepyeye/research-dir sleepyeye/org-dir))
+
+  ;; Define weekly
   (org-starter-define-file "weekly.org" :agenda t :refile '(:maxlevel . 9))
-  (org-starter-def-capture "w"
-      "Weekly entry"
+  (org-starter-def-capture "w" "Weekly")
+  (org-starter-def-capture "wc"
+      "New entry with clock"
     entry
-    (file+function "weekly.org" org-reverse-datetree-goto-date-in-file) "* %?"
-    :clock-in t :clock-resume t :empty-lines 1))
+    (file+function "weekly.org" org-reverse-datetree-goto-date-in-file) "* %^{Entry title}\n %?"
+    :clock-in t :clock-resume t :empty-lines 1)
+  (org-starter-def-capture "wl"
+      "New entry with file link"
+    entry
+    (file+function "weekly.org" org-reverse-datetree-goto-date-in-file) "* %^{Entry title}\n %a\n %?"
+    :empty-lines 1))
 
 
 
