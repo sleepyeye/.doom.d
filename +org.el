@@ -98,12 +98,14 @@ are exported to a filename derived from the headline text."
                                                :base-extension "org"
                                                :publishing-directory ,research/publish
                                                :publishing-function org-publish-research
+                                               :with-toc nil
+                                               :with-title t
                                                ;; FIXME currently completion function not work
                                                ;; :completion-function
                                                ;; (lambda () (let ((default-directory projectile-project-root))
                                                ;;              (message default-directory)
                                                ;;              (shell-command "make html")))
-                                               :body-only t))))
+                                               ))))
 
 (use-package! ox-extra
   :config
