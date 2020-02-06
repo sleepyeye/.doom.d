@@ -1,6 +1,8 @@
 ;; This is tweaked version of scimax's inkscape scripts
 ;; https://github.com/jkitchin/scimax/blob/f8091ca039ec87fc5ad5ad1cceb4ed4655b1572f/scimax-inkscape.el
 
+(use-package! ov)
+
 (defcustom inkscape-image-prefix "images/"
   "Set prefix path for inkscape images"
   :group 'inkscape)
@@ -96,8 +98,7 @@ Make a new file if needed."
            ;; and it exists
            (f-exists? path)
            ;; and there is no overlay here.
-           (not (overlays-at start))
-           )
+           (not (ov-at start)))
       (setq img (create-image
                  (expand-file-name path)
                  'imagemagick nil :width inkscape-thumbnail-width
@@ -113,14 +114,13 @@ Make a new file if needed."
                        (org-display-inline-remove-overlay ,ov t ,start ,end))))
       (push ov org-inline-image-overlays))))
 
-
 (defun inkscape-redraw-thumbnails (&rest args)
   "Use font-lock to redraw the links."
   (with-current-buffer (or (buffer-base-buffer) (current-buffer))
     (org-restart-font-lock)))
 
 ;; This gets the thumbnails to be redrawn with inline image toggling.
-(advice-add 'org-display-inline-images :after 'inkscape-redraw-thumbnails)
+(advice-add 'org-display-inline-images :after #'inkscape-redraw-thumbnails)
 
 
 (defun inkscape-preprocess (backend)

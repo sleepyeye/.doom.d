@@ -13,4 +13,5 @@
 (package! mixed-pitch)
 (package! ox-rst)
 (package! org-download)
+(package! ov)
 ;;(package! org-git-link)
