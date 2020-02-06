@@ -149,7 +149,10 @@ Here are two examples:
  :export (lambda (path desc backend)
            (cond
             ((eq 'html backend)
-             (format "<img src=\"%s\"" path))))
+             (format "<img src=\"%s\"" path))
+            ((eq 'rst backend)
+             (format ".. figure:: %s\n    :align: center\n    :width: 90%%" path))
+            ))
  ;;  You need to use the `inkscape-preprocess' function in a hook for
  ;; more advanced export options like captions.
  )
