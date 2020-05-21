@@ -18,6 +18,7 @@
                   )))
 
 (use-package! ox-rst)
+(use-package! ov)
 
 
 
@@ -82,7 +83,7 @@ are exported to a filename derived from the headline text."
 
 
 (defun org-publish-research (plist filename pub-dir)
-  (if (string-match-p "weekly.org" filename)
+  (if (string-match-p "weekly" (file-name-base filename))
       (org-export-weekly-to-rst pub-dir)
     (org-rst-publish-to-rst plist filename pub-dir)))
 
