@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: attr_rst
+# key: arst
+# condition: t
+# --
+#+ATTR_RST: $1

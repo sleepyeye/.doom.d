@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: rst::cite
+# key: rcite
+# condition: t         
+# --
+@@rst::cite:\`$1\`@@
