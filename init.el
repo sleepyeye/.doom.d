@@ -23,7 +23,7 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-       indent-guides     ; highlighted indent columns
+       ;; indent-guides     ; highlighted indent columns
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
@@ -33,7 +33,7 @@
         +defaults)       ; default popup rules
        ;;pretty-code       ; replace bits of code with pretty symbols
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
-       treemacs          ; a project drawer, like neotree but cooler
+       ;; treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -42,14 +42,14 @@
        :editor
        snippets          ; my elves. They type so I don't have to
        (evil +everywhere); come to the dark side, we have cookies
-       fold              ; (nigh) universal code folding
+       ;; fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
-       file-templates
-       word-wrap
+       ;; file-templates
+       ;; word-wrap
        ;;lispy             ; vim for lisp, for people who dont like vim
        multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
-       rotate-text       ; cycle region at point between text candidates
+       ;; rotate-text       ; cycle region at point between text candidates
 
        :emacs
        (dired            ; making dired pretty [functional]
@@ -153,10 +153,8 @@
        ;;irc               ; how neckbeards socialize
        ;;(rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
-       (write            ; emacs as a word processor (latex + org + markdown)
-       +wordnut         ; wordnet (wn) search
-       +langtool)       ; a proofreader (grammar/style check) for Emacs
-
+       write
+      
        :collab
        ;;floobits          ; peer programming for a price
        ;;impatient-mode    ; show off code over HTTP
