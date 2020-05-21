@@ -138,7 +138,26 @@ Here are two examples:
           do
           (goto-char (org-element-property :begin link))
           (re-search-forward "inkscape:" (org-element-property :end link))
-          (replace-match "file:"))))
+          (replace-match ""))))
+
+
+(defun inkscape-preprocess-rst (backend)
+  "Preprocessing function to run in `org-export-before-processing-hook'.
+Here are two examples:
+ (browse-url (let ((org-export-before-processing-hook '(inkscape-preprocess)))
+  (org-html-export-to-html)))
+ (org-open-file (let ((org-export-before-processing-hook '(inkscape-preprocess)))
+  (org-latex-export-to-pdf)))"
+  (let ((links (reverse (org-element-map (org-element-parse-buffer) 'link
+                          (lambda (link)
+                            (when (string= (org-element-property :type link) "inkscape")
+                              link))))))
+    (loop for link in links
+          do
+          (goto-char (org-element-property :begin link))
+          (re-search-forward "inkscape:" (org-element-property :end link))
+          (replace-match ""))))
+
 
 
 (org-link-set-parameters
