@@ -14,4 +14,6 @@
 (package! ox-rst)
 (package! org-download)
 (package! ov)
+(package! org-roam-bibtex)
+(package! org-ref)
 ;;(package! org-git-link)

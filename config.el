@@ -33,8 +33,6 @@
       ;; doom-serif-font  TODO this need fixed-pitch serif font
       )
 
-
-
 ;;(load-theme 'doom-solarized-light t)
 (load-theme 'doom-dracula t)
 
@@ -46,9 +44,10 @@
 (load! "+lang-cc")
 (load! "+lsp")
 (load! "+korean")
+(load! "+org")
 
 
-(after! org
-  ;; TODO enable +inkscape for latex mode
-  (load! "+inkscape")
-  (load! "+org"))
+;; (after! org
+;;   ;; TODO enable +inkscape for latex mode
+;;   (load! "+inkscape")
+;;   )
